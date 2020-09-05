@@ -16,6 +16,12 @@ class App extends Component {
     // this.search("disney");
   }
 
+  selectGif = (id) => {
+    this.setState({
+      selectedGifId: id
+    });
+  }
+
   search = (query) => {
     // TODO: API call
     giphy('EfieXGVZLa24MvZu0SB60Tfwtqx1BYE1').search({
@@ -23,12 +29,14 @@ class App extends Component {
       rating: 'g',
       limit: 10
     }, (err, res) => {
-      // Res contains gif data!
+      // Res contains gif data! 
       // console.log(res);
+      // res means result
       this.setState({
-        gifs: res.data
+        // res.data is an array objects containing a key id
+        gifs: res.data 
       });
-      });
+    });
   }
 
   render() {
@@ -41,7 +49,7 @@ class App extends Component {
           <Gif id={this.state.selectedGifId} />
         </div>
         <div className="right-scene">
-          <GifList gifs={this.state.gifs} />
+          <GifList gifs={this.state.gifs} selectGif={this.selectGif} />
         </div>
       </div>
     );
