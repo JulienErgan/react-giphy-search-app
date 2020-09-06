@@ -44,9 +44,9 @@ class App extends Component {
       <div>
         <div className="left-scene">
           <SearchBar searchFunction={this.search} />
-        </div>
-        <div className="selected-gif">
-          <Gif id={this.state.selectedGifId} />
+          <div className="selected-gif">
+            <Gif id={this.state.selectedGifId} />
+          </div>
         </div>
         <div className="right-scene">
           <GifList gifs={this.state.gifs} selectGif={this.selectGif} />
