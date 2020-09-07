@@ -18,7 +18,21 @@ class SearchBar extends Component {
     this.props.searchFunction(event.target.value);
   }
 
+  componentWillMount() {
+    console.log("SearchBar will mount");
+    // setInterval
+  }
+
+  componentDidMount() {
+    console.log("SearchBar did mount")
+  }
+
+  // componentWillUnmount() {
+  //   clearInterval
+  // }
+
   render() {
+    console.log("SearchBar render")
     return (
       <input 
         value={this.state.term}

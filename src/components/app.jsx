@@ -5,13 +5,15 @@ import SearchBar from './search_bar';
 import Gif from './gif';
 import GifList from './gif_list';
 
+const GIPHY_API_KEY = 'EfieXGVZLa24MvZu0SB60Tfwtqx1BYE1';
+
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       gifs: [],
-      selectedGifId: "xT9IgDEI1iZyb2wqo8"
+      selectedGifId: null // "xT9IgDEI1iZyb2wqo8"
     }
     // this.search("disney");
   }
@@ -24,19 +26,21 @@ class App extends Component {
 
   search = (query) => {
     // TODO: API call
-    giphy('EfieXGVZLa24MvZu0SB60Tfwtqx1BYE1').search({
-      q: query,
-      rating: 'g',
-      limit: 10
-    }, (err, res) => {
-      // Res contains gif data! 
-      // console.log(res);
-      // res means result
-      this.setState({
-        // res.data is an array objects containing a key id
-        gifs: res.data 
+    // giphy('EfieXGVZLa24MvZu0SB60Tfwtqx1BYE1').search({
+    giphy({ apiKey: GIPHY_API_KEY, https: true })
+      .search({
+        q: query,
+        rating: 'g',
+        limit: 10
+      }, (err, res) => {
+        // Res contains gif data! 
+        // console.log(res);
+        // res means result
+        this.setState({
+          // res.data is an array objects containing a key id
+          gifs: res.data 
+        });
       });
-    });
   }
 
   render() {
